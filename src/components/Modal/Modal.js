@@ -11,7 +11,7 @@ class Modal extends React.Component {
     this.el = document.createElement('div');
   }
 
-  componentWillMount() {
+  componentDidMount() {
     modalRoot.appendChild(this.el);
   }
 
