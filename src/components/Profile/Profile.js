@@ -17,7 +17,7 @@ class Profile extends React.Component {
         this.setState({ name: event.target.value });
         break;
       case 'user-age':
-        this.setState({ naageme: event.target.value });
+        this.setState({ age: event.target.value });
         break;
       case 'user-pet':
         this.setState({ pet: event.target.value });
@@ -26,6 +26,10 @@ class Profile extends React.Component {
         return;
     }
   };
+
+  resetFields = () => {
+    this.setState({name: '', age: '', pet: ''});
+  }
 
   onProfileUpdate = data => {
     fetch(`http://localhost:3000/profile/${this.props.user.id}`, {
@@ -70,6 +74,7 @@ class Profile extends React.Component {
               name='user-name'
               className='pa2 ba w-100'
               placeholder={user.name}
+              value={name}
             ></input>
             <label className='mt2 fw6' htmlFor='user-age'>
               Age:
@@ -80,6 +85,7 @@ class Profile extends React.Component {
               name='user-age'
               className='pa2 ba w-100'
               placeholder={user.age}
+              value={age}
             ></input>
             <label className='mt2 fw6' htmlFor='user-pet'>
               Favourite Pet:
@@ -90,6 +96,7 @@ class Profile extends React.Component {
               name='user-pet'
               className='pa2 ba w-100'
               placeholder={user.pet}
+              value={pet}
             ></input>
             <div
               className='mt4'
@@ -103,9 +110,9 @@ class Profile extends React.Component {
               </button>
               <button
                 className='b pa2 grow pointer hover-white w-40 bg-light-red b--black-20'
-                onClick={toggleModal}
+                onClick={this.resetFields}
               >
-                Cancel
+                Reset
               </button>
             </div>
           </main>
